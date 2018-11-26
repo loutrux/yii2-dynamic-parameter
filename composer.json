@@ -1,0 +1,25 @@
+{
+    "name": "loutrux/yii2-dynamic-parameter",
+    "description": "Dynamic parameters",
+    "keywords": ["yii2", "parameters", "dynamic"],
+    "type": "yii2-extension",
+    "license": "BSD-3-Clause",
+    "support": {
+        "issues": "https://github.com/loutrux/yii2-dynamic-parameters/issues",
+        "source": "https://github.com/loutrux/yii2-dynamic-parameters"
+    },
+    "authors": [
+        {
+            "name": "Loutrux",
+            "email": "loutrux@gmail.com"
+        }
+    ],
+    "require": {
+        "yiisoft/yii2": "~2.0.14",
+        "linslin/yii2-curl": "~1.2.1",
+        "kartik-v/yii2-widget-datepicker": "@dev"
+    },
+    "autoload": {
+        "psr-4": { "loutrux\\dp\\": "src" }
+    }
+}

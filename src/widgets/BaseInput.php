@@ -45,17 +45,26 @@ class BaseInput extends BaseWidget{
 		$style 			= ArrayHelper::getValue($this->fieldOptions,['style'], null);
 		$this->label	= ArrayHelper::getValue($this->fieldOptions,['label'], null);
 		$this->hint		= ArrayHelper::getValue($this->fieldOptions,['hint'], null);
+		$disabled		= ArrayHelper::getValue($this->fieldOptions,['disabled'], false);
+		$separator		= ArrayHelper::getValue($this->fieldOptions,['separator'], false);
 
 		$this->inputOptions = [	'name' 			=> 'value',
 								'class' 		=> $class, 
 								'placeholder' 	=> $placeholder,
-								'style' 		=> $style];
+								'style' 		=> $style,
+								'disabled' 		=> $disabled];
+								
+		if ($separator) {
+			$this->inputOptions['separator'] = $separator;
+			unset($this->fieldOptions['separator']);
+		}
 
 		unset($this->fieldOptions['class']);
 		unset($this->fieldOptions['label']);
 		unset($this->fieldOptions['hint']);
 		unset($this->fieldOptions['placeholder']);
 		unset($this->fieldOptions['style']);
+		unset($this->fieldOptions['disabled']);
 	}
 	
 

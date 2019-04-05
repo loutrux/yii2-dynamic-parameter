@@ -105,6 +105,7 @@ class BaseWidget extends Widget{
 	public $form;
 	public $fieldOptions;
 	public $items;
+	public $defaultValue;
 
 	
 	public function init(){
@@ -118,6 +119,10 @@ class BaseWidget extends Widget{
 		if (!isset($this->key)) 		$this->key = 'undefined';
 		if (!isset($this->value)) 		$this->value = \Yii::$app->{$module->componentName}->get($this->oid,$this->key);
 			else \Yii::$app->{$module->componentName}->set($this->oid,$this->key,$this->value);
+		if (isset($this->defaultValue) && ($this->value === null))	{ 
+				$this->value = $this->defaultValue; 
+				\Yii::$app->{$module->componentName}->set($this->oid,$this->key,$this->value);
+			}
 		if (!isset($this->map)) 		$this->map = [$this->key => ['no set', 'set']];
 		if (!isset($this->messages)) 	$this->messages = $this->map[$this->key];
 		if (!isset($this->fieldOptions)) 	$this->fieldOptions = [];

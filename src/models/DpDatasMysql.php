@@ -200,7 +200,7 @@ class DpDatasMysql extends \loutrux\dp\components\ActiveRecord
 
     public function trace(){
         $trace = [];
-        $trace['user'] = Yii::$app->user->identity->username;
+        $trace['user'] = ArrayHelper::getValue(Yii::$app,'user.identity.username');
         $this->trace = json_encode($trace);
         return true;
     }

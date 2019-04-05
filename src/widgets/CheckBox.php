@@ -26,31 +26,27 @@ use loutrux\dp\models\DpField;
  *
  * @author Vincent Galante <vincent.galante@cosante.com>
  */
-class RadioList extends BaseInput{
-
-	public $items;
+class CheckBox extends BaseInput{
 
 	public function init(){
         
 		parent::init();
 
-		if (!isset($this->items)) 		$this->items = [];
-
-		$this->field->scenario = DpField::SCENARIO_TEXT ;
-		$this->fieldAttribute = 'text';
-		$this->field->text = $this->value;
+		//$this->field->scenario = DpField::SCENARIO_TEXT ;
+		$this->fieldAttribute = 'checkbox';
+		$this->field->checkbox = $this->value;
 		
 	}
 	
 
 	public function run(){
 
-
+		$this->inputOptions['class'] = str_replace('form-control','',$this->inputOptions['class']);
 		$this->input = $this->form->field($this->field, $this->fieldAttribute, $this->fieldOptions);
-		$this->input->radioList($this->items, array_merge($this->inputOptions,['encode' => false],['itemOptions' => ['disabled' => $this->inputOptions['disabled']]]));
+		$this->input->checkbox(array_merge(['label' => $this->label],$this->inputOptions));
 
 		if ($this->hint !== null) 	$this->input->hint($this->hint);
-		if ($this->label !== null) 	$this->input->label($this->label);
+		//if ($this->label !== null) 	$this->input->label($this->label);
 
 
 		echo $this->input;

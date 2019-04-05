@@ -11,7 +11,11 @@ $('input[type=text].dp-widget-event-blur').on('input propertychange paste', func
 });
 
 $('.dp-widget-event-blur input[type=radio]').on('change', function() {
-          $(this).parents('form').submit();
+    $(this).parents('form').submit();
+});
+
+$(' input[type=checkbox].dp-widget-event-blur').on('click', function() {
+    $(this).parents('form').submit();
 });
 
 });

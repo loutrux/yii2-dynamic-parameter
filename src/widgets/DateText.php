@@ -26,15 +26,11 @@ use loutrux\dp\models\DpField;
  *
  * @author Vincent Galante <vincent.galante@cosante.com>
  */
-class RadioList extends BaseInput{
-
-	public $items;
+class DateText extends BaseInput{
 
 	public function init(){
         
 		parent::init();
-
-		if (!isset($this->items)) 		$this->items = [];
 
 		$this->field->scenario = DpField::SCENARIO_TEXT ;
 		$this->fieldAttribute = 'text';
@@ -45,9 +41,9 @@ class RadioList extends BaseInput{
 
 	public function run(){
 
-
-		$this->input = $this->form->field($this->field, $this->fieldAttribute, $this->fieldOptions);
-		$this->input->radioList($this->items, array_merge($this->inputOptions,['encode' => false],['itemOptions' => ['disabled' => $this->inputOptions['disabled']]]));
+		$this->input = $this->form->field($this->field, $this->fieldAttribute);//, $this->fieldOptions);
+		$this->input->widget(\yii\widgets\MaskedInput::className(), ['mask' => '99-99-9999','options' => array_merge(['id' => 'dp'.\Yii::$app->security->generateRandomString(5)],$this->inputOptions)]);
+		//$this->input->textInput($this->inputOptions);
 
 		if ($this->hint !== null) 	$this->input->hint($this->hint);
 		if ($this->label !== null) 	$this->input->label($this->label);

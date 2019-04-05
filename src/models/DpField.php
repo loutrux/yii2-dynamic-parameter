@@ -10,6 +10,7 @@ class DpField extends Model
     public $text;
     public $textRequire;
     public $email;
+    public $checkbox;
 
 	const SCENARIO_TEXT                 = 'text';
 	const SCENARIO_TEXT_REQUIRE         = 'text-require';
@@ -29,7 +30,7 @@ class DpField extends Model
     public function rules()
     {
         return [
-            ['text' ,       'safe'],
+            [['text','checkbox'] ,       'safe'],
             ['textRequire', 'required', 'message'=> 'merci de renseigner cette information'],
             ['email',       'email'],
         ];
@@ -43,7 +44,8 @@ class DpField extends Model
         return [
             'text'           => '',
             'textRequire'    => '',
-            'email'           => ''
+            'email'           => '',
+            'checkbox'    => '',
         ];
     }
     /**
